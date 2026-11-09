@@ -1,9 +1,9 @@
 --- id: 1
 title: "src/digest/types.ts: DigestRow + readNight signature"
-state: open
+state: closed
 labels: [plan:morning-digest]
 created: 2026-11-09T10:00:00+01:00
-closed: null
+closed: 2026-11-09T10:44:00+01:00
 ---
 
 Source: plan.md § 1
@@ -19,3 +19,9 @@ Source: plan.md § 1
 
 ## Blocked by
 — none. This goes first.
+
+## Closing comment
+
+done: src/digest/types.ts with DigestRow and the readNight signature
+worker: opencode · nask-glm/glm-5-2 · medium
+commit: d65def0
