@@ -17,6 +17,15 @@ export function createApp(config: RigConfig = loadConfig()) {
 
   app.get('/health', (c) => c.json({ ok: true, lane: lane().id }));
 
+  app.get('/api/digest/:night', (c) => {
+    const night = c.req.param('night');
+    if (!NIGHT.test(night) || !existsSync(join(config.runsDir, `${night}.jsonl`))) {
+      return c.json({ error: 'night not found' }, 404);
+    }
+    const rows = readNight(config.runsDir, night).toSorted((a, b) => a.job.localeCompare(b.job));
+    return c.json(rows);
+  });
+
   app.get('/', (c) =>
     c.html(
       <Layout title="status" lane={lane()}>
