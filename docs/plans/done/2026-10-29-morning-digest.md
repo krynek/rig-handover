@@ -77,3 +77,20 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issue list
+
+GitHub issues, label `plan:morning-digest` (repo: krynek/rig-handover):
+
+| # | Title | State |
+|---|-------|-------|
+| 1 | src/digest/types.ts: DigestRow + readNight signature | closed |
+| 2 | Run log reader | closed |
+| 3 | Digest page: GET /digest/:night | closed |
+| 4 | Digest JSON: GET /api/digest/:night | closed |
+| 5 | Board link: each night on disk links to its digest | closed |
+| 6 | Route tests for 2a and 2b | closed |
+| 7 | Preview for review | closed |
+| 8 | Clean up: marker off, plan to done | closed |
+
+Preview: https://krynek.github.io/rig-handover-preview/ (marker off per ADR 0003).
