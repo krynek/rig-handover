@@ -1,9 +1,9 @@
 --- id: 3
 title: "Digest page: GET /digest/:night"
-state: open
+state: closed
 labels: [plan:morning-digest]
 created: 2026-11-09T10:00:00+01:00
-closed: null
+closed: 2026-11-09T11:05:00+01:00
 ---
 
 Source: plan.md § 2a
@@ -18,3 +18,9 @@ Source: plan.md § 2a
 
 ## Blocked by
 #1
+
+## Closing comment
+
+done: GET /digest/:night renders the digest table sorted by job with retry>=3 and fail marked; 404 for no file, "nothing ran" for empty
+worker: opencode · nask-glm/glm-5-2 · medium
+commit: 6dd15c2
