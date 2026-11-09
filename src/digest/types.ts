@@ -11,6 +11,4 @@ export type DigestRow = {
   lastAt: string;
 };
 
-export function readNight(runsDir: string, night: string): DigestRow[] {
-  throw new Error('not implemented');
-}
+export { NightNotFound, readNight, readNightResult } from './read.js';
