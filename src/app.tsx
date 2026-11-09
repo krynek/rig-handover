@@ -1,9 +1,16 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { Hono } from 'hono';
 import { loadConfig, type RigConfig } from './config.js';
+import { readNight } from './digest/types.js';
 import { lane } from './lane.js';
 import { readStatus } from './status.js';
+import { DigestPage } from './views/digest.js';
 import { Layout } from './views/layout.js';
+import { NotFound } from './views/not-found.js';
 import { StatusBoard } from './views/status.js';
+
+const NIGHT = /^\d{4}-\d{2}-\d{2}$/;
 
 export function createApp(config: RigConfig = loadConfig()) {
   const app = new Hono();
@@ -14,6 +21,31 @@ export function createApp(config: RigConfig = loadConfig()) {
     c.html(
       <Layout title="status" lane={lane()}>
         <StatusBoard status={readStatus(config)} />
+      </Layout>,
+    ),
+  );
+
+  app.get('/digest/:night', (c) => {
+    const night = c.req.param('night');
+    if (!NIGHT.test(night) || !existsSync(join(config.runsDir, `${night}.jsonl`))) {
+      return c.html(
+        <Layout title="not found" lane={lane()}>
+          <NotFound />
+        </Layout>,
+        404,
+      );
+    }
+    return c.html(
+      <Layout title={`digest · ${night}`} lane={lane()}>
+        <DigestPage night={night} rows={readNight(config.runsDir, night)} />
+      </Layout>,
+    );
+  });
+
+  app.notFound((c) =>
+    c.html(
+      <Layout title="not found" lane={lane()}>
+        <NotFound />
       </Layout>,
     ),
   );
